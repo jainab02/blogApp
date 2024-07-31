@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block title %}
+Register to Blog App
+{% endblock %}
+{% block content %}
+<style>
+    img {
+        height: 100px;
+        width: 100px;
+    }
+    .form-control {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="container mt-4">
+    <form class="col-6 mx-auto card p-4 shadow-lg" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Register</h2>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <br>
+        <p>Already have account? <a href="{% url 'login' %}">Login</a> </p>
+
+    </form>
+
+</div>
+
+{% endblock %}

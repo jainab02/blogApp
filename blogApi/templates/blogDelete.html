@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block title %}
+Confirm Delete
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-5">
+    Are you Sure Want to delete this Blog?
+</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+    <a href="{% url 'blogList' %}" class="btn btn-success">Cancel</a>
+</form>
+{% endblock %}

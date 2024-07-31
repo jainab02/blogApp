@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+
+{% block title %}
+Blog App
+{% endblock %}
+
+{% block content %}
+<style>
+    .card {
+        width: 18rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: contain;
+    }
+
+    .card-text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.5;
+        max-height: 4.5em;
+    }
+
+    .card-text::after {
+        content: '';
+        display: block;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .card-body a {
+        margin-right: 5px;
+    }
+    .card a{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<a class="btn btn-primary mt-3 mb-3" href="{% url 'blogCreation' %}">New Blog</a>
+<div class="container row gap-3">
+    {% for blog in data %}
+    <div class="card">
+        <a href="{% url 'blogRead' blog.id %}" >
+            {% if blog.photos %}
+            <img src="{{ blog.photos.url }}" class="card-img-top" alt="Blog photo">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ blog.user.username }}</h5>
+                <p class="card-text">{{ blog.blog }}</p>
+                {% if blog.user == user %}
+                <a href="{% url 'blogUpdate' blog.id %}" class="btn btn-primary mt-2">Edit</a>
+                <a href="{% url 'blogDelete' blog.id %}" class="btn btn-danger mt-2">Delete</a>
+                {% endif %}
+    
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

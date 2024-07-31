@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block title %}
+Blog Details
+{% endblock %}
+<style>
+    img{
+        height: 20px;
+        object-fit: contain;
+    }
+</style>
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ form.user.username }}</h1>
+    {% if form.photos %}
+    <img src="{{ form.photos.url }}" class="img-fluid" alt="Blog photo">
+    {% endif %}
+    <p>{{ form.blog }}</p>
+</div>
+{% endblock %}
